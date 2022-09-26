@@ -12,7 +12,7 @@ import {
 } from './runtime';
 import { reactive, ref, computed, effect } from './reactivity';
 
-export const MiniVue = (window.MiniVue = {
+export const MiniVue = (window.Vue = {
   createApp,
   render,
   h,

@@ -1,25 +1,18 @@
-const effectStack = [];
-let activeEffect;
+let activeEffect; // 当前运行的 effect fn，唯一
+const targetMap = new WeakMap();
 
-export function effect(fn, options = {}) {
+export function effect(fn) {
   const effectFn = () => {
     try {
       activeEffect = effectFn;
-      effectStack.push(activeEffect);
       return fn();
     } finally {
-      effectStack.pop();
-      activeEffect = effectStack[effectStack.length - 1];
     }
   };
-  if (!options.lazy) {
-    effectFn();
-  }
-  effectFn.scheduler = options.scheduler;
+  effectFn();
   return effectFn;
 }
 
-const targetMap = new WeakMap();
 export function track(target, key) {
   if (!activeEffect) {
     return;
@@ -48,10 +41,6 @@ export function trigger(target, key) {
     return;
   }
   deps.forEach((effectFn) => {
-    if (effectFn.scheduler) {
-      effectFn.scheduler(effectFn);
-    } else {
       effectFn();
-    }
   });
 }
