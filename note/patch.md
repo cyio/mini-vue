@@ -1,8 +1,12 @@
 # patch
 
 `patch` 是什么？
-`Reconciliation`
-diff 算法
+
+`Reconciliation` 调和
+
+diff 算法，启发式算法
+
+https://reactjs.org/docs/reconciliation.html
 
 ## patch 流程图
 
@@ -70,6 +74,7 @@ const n2 = h('ul', null, [
 ]);
 ```
 
+```
 > c1: a b c
 > c2: d e f
 
@@ -78,6 +83,7 @@ const n2 = h('ul', null, [
 
 > c1: a b c g h
 > c2: d e f
+```
 
 ## Fragment 的问题
 
@@ -112,14 +118,18 @@ anchor 是 Fragment 的专有属性
 
 另外，在 `patch` 的 `unmount(n1)` 中，需要重设 anchor。
 
+```
 > h1, h1, h1
 > h1, h2, h1
+```
 
 例如，对上面这个例子进行 `patchChildren`
 第一次 `patch` 时，`n2.el = n1.el`，没有创建元素，anchor 没有用。
 第二次 `patch` 时，先删除了 n1，对 n2 进行创建，执行`insertBefore`，anchor 就需要设置为 n1 的下一个兄弟节点。
 
+```
 > h1, "" h1 "", h1
 > h1, h2, h1
+```
 
 如果 n1 是 Fragment，那么 anchor 应该设置为 n1 的 anchor 的下一个兄弟节点。

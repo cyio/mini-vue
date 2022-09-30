@@ -139,7 +139,7 @@ let flag = ShapeFlags.ELEMENT | ShapeFlags.ARRAY_CHILDREN;
 
 ## h 函数
 
-`h` 函数的用途就是生成 VNode。
+`h` 函数的用途就是生成 VNode（createVNode）。
 它接收三个参数：`type`, `props`, `children`, 返回一个 VNode
 
 ## props
@@ -173,7 +173,7 @@ if (domPropsRE.test(key)) {
   // 满足上面正则的，作为domProp赋值
   el[key] = value;
 } else {
-  // 否则，用setAttribute
+  // 否则，用 setAttribute 自定义属性
   el.setAttribute(key, value);
 }
 ```

@@ -10,9 +10,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
+  // 示例
   devServer: {
     contentBase: './src/examples',
     publicPath: '/dist',
     watchContentBase: true,
   },
+  watchOptions: {
+    poll: 5000,
+    ignored: ['node_modules']
+  }
 };

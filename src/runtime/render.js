@@ -3,6 +3,7 @@ import { patchProps } from './patchProps';
 import { mountComponent } from './component';
 
 export function render(vnode, container) {
+  console.log('render')
   const prevVNode = container._vnode;
   if (!vnode) {
     if (prevVNode) {
@@ -46,6 +47,7 @@ function unmountFragment(vnode) {
   parentNode.removeChild(end);
 }
 
+// 更新 or 挂载
 function processComponent(n1, n2, container, anchor) {
   if (n1) {
     // shouldComponentUpdate
@@ -61,7 +63,9 @@ function updateComponent(n1, n2) {
   n2.component.update();
 }
 
+// n1 昌旧节点，不一定有
 function patch(n1, n2, container, anchor) {
+  // 类型不同卸载掉
   if (n1 && !isSameVNode(n1, n2)) {
     anchor = (n1.anchor || n1.el).nextSibling;
     unmount(n1);

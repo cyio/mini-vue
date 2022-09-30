@@ -17,3 +17,6 @@ export function reactive(target) {
   return proxy;
 }
 
+export function isReactive() {
+  return false;
+}

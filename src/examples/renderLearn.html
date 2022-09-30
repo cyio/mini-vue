@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible"
+    content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./dist/mini-vue.js"></script>
+</head>
+
+<body>
+  <script>
+    const {
+      render,
+      h,
+      Text,
+      Fragment
+    } = Vue;
+
+    const root = document.body;
+    // params: type, props, children
+    const vnode = h(
+      'div',
+      {
+        class: 'a b',
+        style: {
+          color: 'red',
+          border: '1px solid',
+        },
+        onClick: () => console.log('click')
+      },
+      // 'hello world!'
+      [
+        h('ul', null, [
+          h('li', { style: { color: 'green' }}, 'with style & click'),
+          h('li', null, 'text'),
+          h(Fragment, null, [
+            h('li', null, 'fragment child'),
+            h('li', null, 'fragment child 2')
+          ]),
+          h('li', null, [
+            h(Text, null, 'Text Type'),
+            h(Text, null, 'Text Type 2')
+          ])
+        ])
+      ]
+    );
+    render(vnode, root);
+  </script>
+</body>
+
+</html>

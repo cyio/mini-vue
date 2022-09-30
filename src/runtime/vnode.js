@@ -15,7 +15,7 @@ export const Text = Symbol('Text');
 export const Fragment = Symbol('Fragment');
 
 /**
- *
+ * @desc 接受类型、属性、子节点，转换为 VNode 数据结构
  * @param {string | Object | Text | Fragment} type
  * @param {Object | null} props
  * @param {string | number | Array | null} children

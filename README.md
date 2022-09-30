@@ -7,6 +7,10 @@
 1000 多行代码，零依赖，几乎实现了 vue 完整的流程。
 项目结构尽量还原 vue3 源码，只做主线任务。
 
+## 笔记解析
+
+./note/
+
 ## Examples
 
 [预览地址](https://leaon4.github.io/mini-vue3)
